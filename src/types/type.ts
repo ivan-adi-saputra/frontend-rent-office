@@ -9,6 +9,7 @@ export interface Office {
   photos: Photo[];
   benefits: Benefit[];
   about: string;
+  address: string;
 }
 
 interface Photo {
