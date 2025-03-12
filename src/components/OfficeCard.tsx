@@ -1,4 +1,12 @@
-export function OfficeCard() {
+import { Office } from "../types/type";
+
+interface OfficeCardProps {
+  office: Office;
+}
+
+export function OfficeCard({ office }: OfficeCardProps) {
+  const baseUrl = "http://127.0.0.1:8000/storage";
+
   return (
     <a href="details-closed.html" className="card">
       <div className="flex flex-col rounded-[20px] border border-[#E0DEF7] bg-white overflow-hidden">
@@ -7,21 +15,21 @@ export function OfficeCard() {
             Popular
           </p>
           <img
-            src="/assets/images/thumbnails/thumbnails-4.png"
+            src={`${baseUrl}/${office.thumbnail}`}
             className="w-full h-full object-cover"
-            alt="thumbnails"
+            alt={office.name}
           />
         </div>
         <div className="card-detail-container flex flex-col p-5 pb-[30px] gap-4">
           <h3 className="line-clamp-2 font-bold text-[22px] leading-[36px] h-[72px]">
-            Angga Park Central Master Silicon Valley Star Class
+            {office.name}
           </h3>
           <div className="flex items-center justify-between">
             <p className="font-semibold text-xl leading-[30px]">
-              Rp 18.560.000
+              Rp {office.price.toLocaleString("id")}
             </p>
             <div className="flex items-center justify-end gap-[6px]">
-              <p className="font-semibold">20 days</p>
+              <p className="font-semibold">{office.duration} days</p>
               <img
                 src="/assets/images/icons/clock.svg"
                 className="w-6 h-6"
@@ -37,7 +45,7 @@ export function OfficeCard() {
                 className="w-6 h-6"
                 alt="icon"
               />
-              <p className="font-semibold">Jakarta Pusat</p>
+              <p className="font-semibold">{office.city.name}</p>
             </div>
             <div className="flex items-center justify-end gap-[6px]">
               <p className="font-semibold">4.5/5</p>
